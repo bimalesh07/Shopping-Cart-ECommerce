@@ -57,3 +57,12 @@ input::placeholder{
 .img img{
   width: 500px;
 }
+.con{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+.items{
+  cursor: pointer;
+}

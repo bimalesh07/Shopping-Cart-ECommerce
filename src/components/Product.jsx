@@ -1,8 +1,7 @@
 import React from 'react'
-import { items } from './Data'
 import { Link } from 'react-router-dom';
 
-const Product = () => {
+const Product = ({items}) => {
   return (
     <div className="container my-5">
       <div className="row">
