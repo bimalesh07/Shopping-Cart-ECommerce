@@ -18,6 +18,7 @@ function App() {
           <Route path='/'element={<Product items={data}/>}></Route>
           <Route path='/product/:id' element={<ProductDe/>}></Route>
           <Route path='/search/:term' element={<Search/>}></Route>
+          <Route path='/search' element={<Search/>}></Route>
           <Route path='/card' element={<Card/>}></Route>
         </Routes>
       </Router>
