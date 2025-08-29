@@ -3,9 +3,9 @@ import { Link, useNavigate} from 'react-router-dom'
 import { items } from './Data'
 import { useState } from 'react'
 
-const Navbar = ({setdata}) => {
+const Navbar = ({setdata,cart}) => {
 const navigate = useNavigate();
-const [Searchitem, setSearchitem] = useState(" ")
+const [Searchitem, setSearchitem] = useState("")
   const filterByCategory = (category)=>{
     const element = items.filter((product)=>product.category === category)
     setdata(element)
@@ -19,6 +19,7 @@ const [Searchitem, setSearchitem] = useState(" ")
 const handleSubmit = (e)=>{
   e.preventDefault();
   navigate(`/search/${Searchitem}`);
+  setSearchitem("")
 }
   return (
     <>
@@ -29,13 +30,23 @@ const handleSubmit = (e)=>{
           </Link>
 
           <form className="search-bar" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Search Products" value={Searchitem} onChange={(e)=>setSearchitem(e.target.value)} ></input>
-            <h1>{Searchitem}</h1>
+            <input
+              type="text"
+              placeholder="Search Products"
+              value={Searchitem}
+              onChange={(e) => setSearchitem(e.target.value)}
+            ></input>
           </form>
 
           <Link to="/card" className="cart">
             {" "}
-            Cart
+            <button type="button" className="btn btn-primary position-relative">
+              Cart
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {cart.length}
+                <span className="visually-hidden">unread messages</span>
+              </span>
+            </button>
           </Link>
         </div>
         <div className="navbar-wrapper">

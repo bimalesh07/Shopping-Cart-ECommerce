@@ -10,16 +10,16 @@ import { useState } from 'react'
 
 function App() {
   const [data, setdata] = useState([...items])
+  const [cart, setcart] = useState([])
   return (
     <>
       <Router>
-        <Navbar setdata={setdata}/>
+        <Navbar setdata={setdata} cart={cart}/>
         <Routes>
-          <Route path='/'element={<Product items={data}/>}></Route>
+          <Route path='/'element={<Product cart={cart} setcart={setcart} items={data}/>}></Route>
           <Route path='/product/:id' element={<ProductDe/>}></Route>
           <Route path='/search/:term' element={<Search/>}></Route>
-          <Route path='/search' element={<Search/>}></Route>
-          <Route path='/card' element={<Card/>}></Route>
+          <Route path='/card' element={<Card cart={cart} setcart={setcart}/>}></Route>
         </Routes>
       </Router>
     </>
