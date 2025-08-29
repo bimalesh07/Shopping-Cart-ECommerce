@@ -1,11 +1,16 @@
 import React from 'react'
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate, useLocation} from 'react-router-dom'
 import { items } from './Data'
 import { useState } from 'react'
+import { FaCartPlus } from "react-icons/fa";
+
 
 const Navbar = ({setdata,cart}) => {
+console.log(useLocation());
+const locaton = useLocation();
 const navigate = useNavigate();
 const [Searchitem, setSearchitem] = useState("")
+
   const filterByCategory = (category)=>{
     const element = items.filter((product)=>product.category === category)
     setdata(element)
@@ -26,7 +31,7 @@ const handleSubmit = (e)=>{
       <header className="sticky-top">
         <div className="nav-bar">
           <Link to={"/"} className="brand">
-            E-cart
+            B-E Cart
           </Link>
 
           <form className="search-bar" onSubmit={handleSubmit}>
@@ -41,42 +46,44 @@ const handleSubmit = (e)=>{
           <Link to="/card" className="cart">
             {" "}
             <button type="button" className="btn btn-primary position-relative">
-              Cart
+              <FaCartPlus/>
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {cart.length}
-                <span className="visually-hidden">unread messages</span>
+                <span className="visually-hidden"></span>
               </span>
             </button>
           </Link>
         </div>
-        <div className="navbar-wrapper">
-          <div className="items">Filter by-{">"}</div>
-          <div className="items" onClick={() => setdata(items)}>
-            No Fillter
-          </div>
-          <div className="items" onClick={() => filterByCategory("mobiles")}>
-            Mobiles
-          </div>
-          <div className="items" onClick={() => filterByCategory("laptops")}>
-            Laptop
-          </div>
-          <div className="items" onClick={() => filterByCategory("tablets")}>
-            Tablets
-          </div>
-          <div className="items" onClick={() => filterbyprice("2999")}>
-            {">="}2999
-          </div>
+        {locaton.pathname === "/" && (
+          <div className="navbar-wrapper">
+            <div className="items">Filter by-{">"}</div>
+            <div className="items" onClick={() => setdata(items)}>
+              No Fillter
+            </div>
+            <div className="items" onClick={() => filterByCategory("mobiles")}>
+              Mobiles
+            </div>
+            <div className="items" onClick={() => filterByCategory("laptops")}>
+              Laptop
+            </div>
+            <div className="items" onClick={() => filterByCategory("tablets")}>
+              Tablets
+            </div>
+            <div className="items" onClick={() => filterbyprice("2999")}>
+              {">="}2999
+            </div>
 
-          <div className="items" onClick={() => filterbyprice("3999")}>
-            {">="}3999
+            <div className="items" onClick={() => filterbyprice("3999")}>
+              {">="}3999
+            </div>
+            <div className="items" onClick={() => filterbyprice("4999")}>
+              {">="}4999
+            </div>
+            <div className="items" onClick={() => filterbyprice("5999")}>
+              {">="}5999
+            </div>
           </div>
-          <div className="items" onClick={() => filterbyprice("4999")}>
-            {">="}4999
-          </div>
-          <div className="items" onClick={() => filterbyprice("5999")}>
-            {">="}5999
-          </div>
-        </div>
+        )}
       </header>
     </>
   );

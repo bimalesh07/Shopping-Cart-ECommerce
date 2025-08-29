@@ -14,12 +14,24 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar setdata={setdata} cart={cart}/>
+        <Navbar setdata={setdata} cart={cart} />
         <Routes>
-          <Route path='/'element={<Product cart={cart} setcart={setcart} items={data}/>}></Route>
-          <Route path='/product/:id' element={<ProductDe/>}></Route>
-          <Route path='/search/:term' element={<Search/>}></Route>
-          <Route path='/card' element={<Card cart={cart} setcart={setcart}/>}></Route>
+          <Route
+            path="/"
+            element={<Product cart={cart} setcart={setcart} items={data} />}
+          ></Route>
+          <Route
+            path="/product/:id"
+            element={<ProductDe cart={cart} setcart={setcart} />}
+          ></Route>
+          <Route
+            path="/search/:term"
+            element={<Search cart={cart} setcart={setcart} />}
+          ></Route>
+          <Route
+            path="/card"
+            element={<Card cart={cart} setcart={setcart} />}
+          ></Route>
         </Routes>
       </Router>
     </>
